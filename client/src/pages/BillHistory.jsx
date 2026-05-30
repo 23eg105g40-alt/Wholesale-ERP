@@ -27,7 +27,7 @@ import {
 } from "framer-motion";
 
 import toast from "react-hot-toast";
-
+import jsPDF from "jspdf";
 import {
 
     CalendarDays,
@@ -84,7 +84,23 @@ function BillHistory() {
         }
 
     };
+const downloadInvoice = (bill) => {
 
+    const doc = new jsPDF();
+
+    doc.setFontSize(18);
+    doc.text("Wholesale ERP Invoice", 20, 20);
+
+    doc.setFontSize(12);
+
+    doc.text(`Invoice No: ${bill.invoiceNumber}`, 20, 40);
+    doc.text(`Customer: ${bill.customer?.name || "N/A"}`, 20, 55);
+    doc.text(`Product: ${bill.product?.name || "N/A"}`, 20, 70);
+    doc.text(`Quantity: ${bill.quantity}`, 20, 85);
+    doc.text(`Amount: ₹${bill.totalAmount}`, 20, 100);
+
+    doc.save(`${bill.invoiceNumber}.pdf`);
+};
     // FILTERED BILLS
 
     const filteredBills =
@@ -226,6 +242,9 @@ function BillHistory() {
                                         <th className="p-5 text-center">
                                             Status
                                         </th>
+                                        <th className="p-5 text-center">
+    Invoice
+</th>
 
                                     </tr>
 
@@ -353,6 +372,21 @@ function BillHistory() {
                                                     </span>
 
                                                 </td>
+                                                <td className="p-5 text-center">
+
+    <button
+
+        onClick={() => downloadInvoice(bill)}
+
+        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold"
+
+    >
+
+        PDF
+
+    </button>
+
+</td>
 
                                             </tr>
 
@@ -363,7 +397,7 @@ function BillHistory() {
                                         <tr>
 
                                             <td
-                                                colSpan="7"
+                                                colSpan="8"
                                                 className="py-20"
                                             >
 
