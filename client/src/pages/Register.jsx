@@ -45,8 +45,8 @@ function Register() {
 
     name: "",
     email: "",
-    password: "",
-    role: "staff"
+    password: ""
+    
 
 });
 
@@ -306,42 +306,7 @@ function Register() {
                         />
 
                     </div>
-                    {/* ROLE */}
-
-<div className="mb-8">
-
-    <label className={`block mb-2 font-medium ${
-        darkMode
-            ? "text-gray-300"
-            : "text-gray-700"
-    }`}>
-
-        Role
-
-    </label>
-
-    <select
-        name="role"
-        value={formData.role}
-        onChange={handleChange}
-        className={`w-full p-4 rounded-2xl border outline-none transition-all ${
-            darkMode
-                ? "bg-[#0F172A] border-gray-700 text-white focus:border-blue-500"
-                : "bg-gray-50 border-gray-300 text-black focus:border-blue-500"
-        }`}
-    >
-
-        <option value="staff">
-            Staff
-        </option>
-
-        <option value="admin">
-            Admin
-        </option>
-
-    </select>
-
-</div>
+                    
 
                     {/* BUTTON */}
 

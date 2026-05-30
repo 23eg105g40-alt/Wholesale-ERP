@@ -15,8 +15,7 @@ export const registerUser = async (
         const {
             name,
             email,
-            password,
-            role
+            password
         } = req.body;
 
         // CHECK EXISTING USER
@@ -48,7 +47,7 @@ export const registerUser = async (
 
                 password: hashedPassword,
 
-                role: role || "staff"
+                role: "staff"
 
             });
 
